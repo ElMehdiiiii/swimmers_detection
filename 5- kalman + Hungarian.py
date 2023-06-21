@@ -160,5 +160,12 @@ while cap.isOpened():
 
 print(estimated_points_top)
 print(estimated_points_bottom)
+
+maximum_distance_threshold = 5
+maximum_frames_without_detection = 15
+
+tracks = track_objects(objets_points_top_left, maximum_distance_threshold, maximum_frames_without_detection)
+tracks = track_objects(objets_points_bottom_right, maximum_distance_threshold, maximum_frames_without_detection)
+
 cap.release()  # Release the video capture
 cv.destroyAllWindows()
