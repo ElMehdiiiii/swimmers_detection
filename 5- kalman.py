@@ -49,6 +49,43 @@ class KalmanFilter:
             estimated_state = predicted
         return estimated_state
 
+def track_objects(predicted_points, maximum_distance_threshold, maximum_frames_without_detection):
+    closed_tracks = []
+    open_tracks = []
+
+    for frame, predicted_frame_points in enumerate(predicted_points):
+        estimated_points = []  # estimated next points from open tracks obtained by Kalman filter
+        for track in open_tracks:
+            estimated_point = track.estimate_next_point()  # replace with your Kalman filter estimation
+            estimated_points.append(estimated_point)
+
+        associations = associate_points(predicted_frame_points, estimated_points, maximum_distance_threshold)
+
+        for association in associations:
+            predicted_index, estimated_index = association
+            predicted_point = predicted_frame_points[predicted_index]
+            estimated_point = estimated_points[estimated_index]
+            open_tracks[estimated_index].add_point(frame, predicted_point, estimated_point)
+
+        for track in open_tracks:
+            if track.frames_without_detection > maximum_frames_without_detection:
+                closed_tracks.append(track)
+            else:
+                track.frames_without_detection += 1
+
+        open_tracks = [track for track in open_tracks if track.frames_without_detection <= maximum_frames_without_detection]
+
+        for predicted_index, predicted_point in enumerate(predicted_frame_points):
+            is_already_accounted = any(predicted_point in track.predicted_points for track in open_tracks)
+            is_already_accounted |= any(predicted_point in track.predicted_points for track in closed_tracks)
+            if not is_already_accounted:
+                new_track = Track()
+                new_track.add_point(frame, predicted_point, None)
+                open_tracks.append(new_track)
+
+    closed_tracks += open_tracks
+
+    return closed_tracks
 # Example usage
 initial_x1 = 0
 initial_y1 = 0
