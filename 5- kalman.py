@@ -69,7 +69,8 @@ fichier_label = "yolo_results.csv"
 predicted_points_all_frames = genfromtxt(fichier_label, delimiter=',')
 objets_points_top_left = [[0] for i in range(len(predicted_points_all_frames))] # dictionary of {frame : top left}
 objets_points_bottom_right = [[0] for i in range(len(predicted_points_all_frames))] # dictionary of {frame : bottom right}
-estimated_points = [[0,0]]
+estimated_points_top = [[0,0]]
+estimated_points_bottom = [[0,0]]
 kalman_filter1 = KalmanFilter(initial_x1, initial_y1, initial_dx1, initial_dy1, dt)  # Kalman filter for top-left points
 kalman_filter2 = KalmanFilter(initial_x2, initial_y2, initial_dx2, initial_dy2, dt)  # Kalman filter for bottom-right points
 
@@ -115,10 +116,12 @@ while cap.isOpened():
     estimated_state1 = [estimated_state1[i][0] for i in range(len(estimated_state1))]
     estimated_state2 = [estimated_state2[i][0] for i in range(len(estimated_state2))]
 
-    estimated_points.append([estimated_state1[0], estimated_state1[1], estimated_state2[0], estimated_state2[1]])
+    
+    estimated_points_top.append([estimated_state1[0], estimated_state1[1]])
+    estimated_points_bottom.append([ estimated_state2[0], estimated_state2[1]])
     id_frame += 1
 
-print(estimated_state1)
-print(estimated_state2)
+print(estimated_points_top)
+print(estimated_points_bottom)
 cap.release()  # Release the video capture
 cv.destroyAllWindows()
