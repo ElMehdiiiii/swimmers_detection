@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.optimize import linear_sum_assignment
+from kalman.py import KalmanFilter
 
 def associate_points(predicted_points, estimated_points, maximum_distance):
     num_predicted = len(predicted_points)
@@ -62,17 +63,16 @@ class Track:
         self.predicted_points = []
         self.estimated_points = []
         self.frames_without_detection = 0
+        self.kf= KalmanFilter( 0 , 0 , 0 ,0 )
 
     def add_point(self, frame, predicted_point, estimated_point):
         self.predicted_points.append((frame, predicted_point))
         self.estimated_points.append(estimated_point)
         self.frames_without_detection = 0
 
-    def estimate_next_point(self):
-        # Implement your Kalman filter estimation here
-        # Return the estimated next point
-        pass
-
+    def estimate_next_point(self , CoordX , CoordY):
+        return kf.Estimate(self , CoordX , CoordY)
+            
 predicted_points = [
     np.array([[10, 10], [20, 20], [30, 30]]),
     np.array([[15, 15], [25, 25], [35, 35], [45, 45]]),
@@ -80,6 +80,6 @@ predicted_points = [
 ]
 
 maximum_distance_threshold = 5
-maximum_frames_without_detection = 2
+maximum_frames_without_detection = 15
 
 tracks = track_objects(predicted_points, maximum_distance_threshold, maximum_frames_without_detection)
