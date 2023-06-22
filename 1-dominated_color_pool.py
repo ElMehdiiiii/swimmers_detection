@@ -3,24 +3,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-#def calculate_dominant_color(image):
+def calculate_dominant_color(image):
     # Convert HSV image to RGB
- #   rgb_image = cv2.cvtColor(image, cv2.COLOR_HSV2RGB)
+    rgb_image = cv2.cvtColor(image, cv2.COLOR_HSV2RGB)
     # Threshold to filter out black areas
-  #  lower_black = np.array([1, 10, 10], dtype=np.uint8)
-   # upper_black = np.array([180, 255, 30], dtype=np.uint8)  # Adjust the threshold if needed
-    #black_mask = cv2.inRange(rgb_image, lower_black, upper_black)
+    lower_black = np.array([1, 10, 10], dtype=np.uint8)
+    upper_black = np.array([180, 255, 30], dtype=np.uint8)  # Adjust the threshold if needed
+    black_mask = cv2.inRange(rgb_image, lower_black, upper_black)
 
     # Apply the mask to the RGB image
-   # filtered_image = cv2.bitwise_and(rgb_image, rgb_image, mask=black_mask)
+    filtered_image = cv2.bitwise_and(rgb_image, rgb_image, mask=black_mask)
 
     # Reshape the image to a list of pixels
-    #reshaped_image = filtered_image.reshape((-1, 3))
+    reshaped_image = filtered_image.reshape((-1, 3))
 
     # Calculate the dominant color
-    #dominant_color = np.argmax(np.bincount(reshaped_image[:, 0]))
+    dominant_color = np.argmax(np.bincount(reshaped_image[:, 0]))
 
-    #return dominant_color
+    return dominant_color
 
 # Load your HSV image
 
@@ -38,7 +38,7 @@ plt.show()
 
 
 # Calculate the dominant color
-#dominant_color = calculate_dominant_color(hsv_image)
+dominant_color = calculate_dominant_color(hsv_image)
 
-#print("Dominant color:", dominant_color)
+print("Dominant color:", dominant_color)
 
