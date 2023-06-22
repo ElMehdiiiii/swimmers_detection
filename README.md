@@ -1,6 +1,6 @@
 # swimmers_detection
 Project Annexe :
-/n \n
+//
 1-dominated_color_pool.py : Pre-Processing step defining the dominant amoung the interval of blue color in the captured video this will help in the next step of pool extraction 
 //
 2-poolextract.py : Pre-processing step: that extract the pool thanks to the previous code 
