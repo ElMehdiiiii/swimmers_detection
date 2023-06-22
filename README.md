@@ -3,6 +3,7 @@ The Swimmer detection project aims to detect swimmers in competition videos desp
 
 ## Swimmer detection process
 This process consists of three phases using the files below:
+
 1- ***dominated_color_pool.py***: Pre-processing step defining the dominant among the blue color range in the captured video, which will help in the following pool extraction step. 
 
 2- ***poolextract.py***: Pre-processing step: extracts the pool using the previous code. 
