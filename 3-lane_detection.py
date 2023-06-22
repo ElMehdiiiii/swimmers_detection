@@ -29,3 +29,4 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # TODO :  deal with discontinuities can solve the problem in the hough_transformation step
+# Solved : Take the average line for the nearest ones , and make it longer 
