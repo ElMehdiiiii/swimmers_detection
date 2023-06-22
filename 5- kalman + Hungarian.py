@@ -102,7 +102,7 @@ dt = 0.1
 video_file = "video2.mp4"  # Path to your video file
 fichier_label = "yolo_results.csv"
 
-# liste des points prise par yolo
+# list of points taken by yolo
 predicted_points_all_frames = genfromtxt(fichier_label, delimiter=',')
 objets_points_top_left = [[0] for i in range(len(predicted_points_all_frames))] # dictionary of {frame : top left}
 objets_points_bottom_right = [[0] for i in range(len(predicted_points_all_frames))] # dictionary of {frame : bottom right}
