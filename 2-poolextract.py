@@ -19,7 +19,7 @@ upper_range = np.tile(upper_range, (hsv_image.shape[0], hsv_image.shape[1], 1))
 mask = cv2.inRange(hsv_image, lower_range, upper_range)
 # Apply morphological operations to remove noise and refine the mask
 kernel = np.ones((4,4), np.uint8)
-# !!!! commentaire : 4 et le nombre d'iterations can be optimized
+# !!!! comment : 4 the number of iterations can be optimized
 mask = cv2.erode(mask, kernel, iterations=2)
 mask = cv2.dilate(mask, kernel, iterations=2)
 
