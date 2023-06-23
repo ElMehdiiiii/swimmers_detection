@@ -16,4 +16,4 @@ This process consists of three phases using the files below:
 
 6- ***Swimmer detection_dataset_example*** : is a sample of an augmented data set that we used in our training 
 
-7- ***TrainedWeights.pt*** : the trained weights of our Yolo v5 based on the data set that we gave a sample of it ( The model being used here is YOLO V5 that you can have access via google Colab : https://colab.research.google.com/drive/1gDZ2xcTOgR39tGGs-EZ6i3RTs16wmzZQ ) 
+7- ***TrainedWeights.pt*** : the trained weights of our Yolo v5 on the basis of the data set of which we have given a sample ( The model being used here is YOLO V5 that you can access via google Colab : https://colab.research.google.com/drive/1gDZ2xcTOgR39tGGs-EZ6i3RTs16wmzZQ ) 
